@@ -142,10 +142,10 @@ EOT
   validation {
     condition = alltrue([
       for k, v in var.serviceendpoint_servicefabrics : (
-        v.none == null || (v.none.cluster_spn == null || (length(v.none.cluster_spn) >= 0 && length(v.none.cluster_spn) <= 1024))
+        v.none == null || (v.none.cluster_spn == null || (length(v.none.cluster_spn) <= 1024))
       )
     ])
-    error_message = "must be between 0 and 1024 characters"
+    error_message = "must be at most 1024 characters"
   }
 }
 
